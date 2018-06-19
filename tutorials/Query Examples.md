@@ -221,12 +221,12 @@ results = users.find({ 'weapons' : { '$containsAny' : ['tyrfing', 'mjolnir'] } }
 **$containsAll** - filter for documents(s) with property containing all of the provided values
 ```javascript
 users.insert({ name : 'odin', weapons : ['gungnir', 'draupnir']});
-users.insert({ name : 'thor', weapons : ['mjolnir']});
-users.insert({ name : 'svafrlami', weapons : ['tyrfing']});
+users.insert({ name : 'thor', weapons : ['mjolnir', 'draupnir']});
+users.insert({ name : 'svafrlami', weapons : ['gungnir', 'tyrfing']});
 users.insert({ name : 'arngrim', weapons : ['tyrfing']});
 
-// returns 'svafrlami' and 'arngrim'
-results = users.find({ 'weapons' : { '$containsNone' : ['gungnir', 'mjolnir'] } });
+// returns 'odin'
+results = users.find({ 'weapons' : { '$containsAll' : ['gungnir', 'draupnir'] } });
 ```
 **$containsNone** - filter for documents(s) with property containing none of the provided values
 ```javascript
