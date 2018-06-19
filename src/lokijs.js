@@ -497,6 +497,14 @@
         return false;
       },
 
+      $containsAll: function (a,b) {
+        var checkFn = containsCheckFn(a);
+        if (checkFn !== null) {
+          return (Array.isArray(b)) ? (b.every(checkFn)) : (checkFn(b));
+        }
+        return false;
+      },
+
       $contains: function (a, b) {
         var checkFn = containsCheckFn(a);
         if (checkFn !== null) {

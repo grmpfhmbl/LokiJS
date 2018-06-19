@@ -22,21 +22,24 @@ describe('loki', function () {
     users.insert({
       name: 'dave',
       age: 25,
-      lang: 'English'
+      lang: 'English',
+      weapons : ['gungnir', 'draupnir']
     });
 
     users.insert({
       name: 'joe',
       age: 39,
-      lang: 'Italian'
+      lang: 'Italian',
+      weapons : ['mjolnir', 'tyrfing', 'draupnir']
     });
 
     jonas = users.insert({
       name: 'jonas',
       age: 30,
-      lang: 'Swedish'
+      lang: 'Swedish',
+      weapons : ['tyrfing', 'draupnir']
     });
-  })
+  });
 
 
   describe('core methods', function () {
@@ -130,6 +133,21 @@ describe('loki', function () {
       expect(users.find({
         'name': {
           '$containsAny': ['nas', 'dave']
+        }
+      }).length).toEqual(2);
+
+
+      // $containsAll on string
+      expect(users.find({
+        'name': {
+          '$containsAll': ['jon', 'nas']
+        }
+      }).length).toEqual(1);
+
+      // $containsAll on array.
+      expect(users.find({
+        'weapons': {
+          '$containsAll': ['tyrfing', 'draupnir']
         }
       }).length).toEqual(2);
 
